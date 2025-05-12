@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM WhatsApp</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">WhatsappWEB</div>
+        <div id="connection-status" class="status-indicator connecting">Conectando...</div>
+      </div>
+      <div class="tab-buttons">
+        <button class="tab-button active" data-tab="chats">Chats</button>
+        <button class="tab-button" data-tab="sessions">Dispositivos</button>
+      </div>
+      <div class="tab-content">
+        <!-- Chat List -->
+        <div id="chats-tab" class="chat-list">
+          <!-- Chat items will be added here dynamically -->
+        </div>
+        
+        <!-- Sessions Management -->
+        <div id="sessions-tab" class="sessions-list hidden">
+          <div class="sessions-header">
+            <h2>Gestión de Sesiones</h2>
+            <button id="add-session-btn" class="add-session-btn">
+              <i class="fas fa-plus"></i> Nueva Sesión
+            </button>
+          </div>
+          <div id="sessions-container">
+            <!-- Sessions will be added here dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <div class="chat-header-name">Selecciona un chat</div>
+            <div class="chat-header-status">Sin conversación activa</div>
+          </div>
+        </div>
+        
+        <div class="messages-container" id="messages-container">
+          <!-- Messages will be added here dynamically -->
+          <div class="welcome-message">
+            <i class="fas fa-comments"></i>
+            <p>Selecciona un chat para comenzar</p>
+          </div>
+        </div>
+        
+        <div class="quick-replies">
+          <button class="quick-reply-button" id="greeting-button">Saludo</button>
+          <button class="quick-reply-button" id="end-chat-button">Finalización de chat</button>
+        </div>
+        
+        <div class="chat-input-container">
+          <input type="text" class="chat-input" id="message-input" placeholder="Escribe un mensaje...">
+          <button class="send-button" id="send-button">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session QR Code Modal -->
+  <div id="qr-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Escanea el código QR</h2>
+      <div class="qr-container">
+        <div id="modal-qrcode" class="qr-code">
+          <div class="loading-qr">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Generando código QR...</p>
+          </div>
+        </div>
+      </div>
+      <p class="qr-instructions">Abre WhatsApp en tu teléfono > Menú > WhatsApp Web > Escanea este código</p>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
